@@ -22,6 +22,9 @@ resource "google_compute_instance" "vm_instance" {
     access_config = {
     }
   }
+  metadata {
+  sshKeys = "reddisekhara_n:/home/reddisekhara_n/.ssh/id_rsa.pub"
+  }
 }
 
 resource "google_compute_firewall" "http" {
