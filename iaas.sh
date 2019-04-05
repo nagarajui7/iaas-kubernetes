@@ -19,7 +19,7 @@ cat ip_list
 cat <<EOF > /home/reddisekhara_n/iaas-kubernetes/final_list
 [master]
 `sed -n '1p' ip_list`
-[node]
+[nodes]
 `sed -e '1d' ip_list`
 [others]
 EOF
