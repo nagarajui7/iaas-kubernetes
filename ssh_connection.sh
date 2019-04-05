@@ -1,4 +1,5 @@
-for (( i=0; i< 3; i++ ))
+num=$1
+for (( i=0; i< $num; i++ ))
 do
     gcloud compute scp ~/.ssh/id_rsa.pub terraform-$i:~/.ssh/authorized_keys --strict-host-key-checking=no --zone=asia-east1-a
 done
