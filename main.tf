@@ -1,12 +1,12 @@
 provider "google" {
   project = "iaas-provision-236417"
-  region = "asia-south1"
-  zone = "asia-south1-c"
+  region = "asia-east1"
+  zone = "asia-east1-a"
 }
 
 resource "google_compute_instance" "vm_instance" {
-  count = 4
-  name = "terraform-instance-${count.index}"
+  count = 3
+  name = "terraform-${count.index}"
   machine_type = "f1-micro"
 
   boot_disk {
@@ -22,13 +22,9 @@ resource "google_compute_instance" "vm_instance" {
     access_config = {
     }
   }
-  metadata {
-  sshKeys = "reddisekhara_n:/home/reddisekhara_n/.ssh/id_rsa.pub"
-  }
 }
-
 resource "google_compute_firewall" "http" {
-  name    = "default-firewall-http"
+  name    = "default-firewall-http-1"
   network = "default"
 
   allow {
@@ -41,7 +37,7 @@ resource "google_compute_firewall" "http" {
 }
 
 resource "google_compute_firewall" "https" {
-  name    = "default-firewall-https"
+  name    = "default-firewall-https-1"
   network = "default"
 
   allow {
@@ -49,3 +45,13 @@ resource "google_compute_firewall" "https" {
     ports    = ["443"]
   }
 }
+resource "google_compute_firewall" "ssh" {
+  name    = "default-firewall-ssh-1"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+}
+

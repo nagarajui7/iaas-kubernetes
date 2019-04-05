@@ -12,4 +12,16 @@ terraform plan -out out.terraform
 terraform apply out.terraform
 
 #list of vm's created
-gcloud compute instances list | awk '{print $5}'
+gcloud compute instances list | awk '{print $5}' | sed 1d | sed 's/35.237.47.11//g' | sudo tee ip_list
+cat ip_list
+
+#updating the ansible hosts file
+cat <<EOF > /home/reddisekhara_n/iaas-kubernetes/final_list
+[master]
+`sed -n '1p' ip_list`
+[node]
+`sed -e '1d' ip_list`
+[others]
+EOF
+cat /home/reddisekhara_n/iaas-kubernetes/final_list | sudo tee /etc/ansible/hosts 
+
