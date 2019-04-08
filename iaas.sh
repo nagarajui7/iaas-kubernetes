@@ -1,7 +1,7 @@
 num=$1
 #gcloud authentication
-gcloud auth activate-service-account --key-file /home/reddisekhara_n/name.json 
-export GOOGLE_CLOUD_KEYFILE_JSON=/home/reddisekhara_n/name.json
+gcloud auth activate-service-account --key-file /home/reddisekhara_n/iaas-provision-236417-83c0879798aa.json
+export GOOGLE_CLOUD_KEYFILE_JSON=/home/reddisekhara_n/iaas-provision-236417-83c0879798aa.json
 
 #number of vm's to be created
 sed -i "s/count =.*/count = $num/g" main.tf
