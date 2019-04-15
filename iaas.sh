@@ -12,7 +12,7 @@ terraform plan -out out.terraform
 terraform apply out.terraform
 
 echo '######################list of vm's created#####################'
-gcloud compute instances list | awk '{print $5}' | sed 1d | sed 's/35.237.47.11//g' | sudo tee ip_list
+gcloud compute instances list | awk '{print $5}' | sed 1d | sed 's/34.73.216.180//g' | sudo tee ip_list
 cat ip_list
 
 echo '######################updating the ansible hosts file#####################'
