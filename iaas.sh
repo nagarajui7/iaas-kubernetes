@@ -3,7 +3,7 @@ echo '#####################gcloud authentication#####################'
 gcloud auth activate-service-account --key-file /home/reddisekhara_n/iaas-provision-236417-83c0879798aa.json
 export GOOGLE_CLOUD_KEYFILE_JSON=/home/reddisekhara_n/iaas-provision-236417-83c0879798aa.json
 
-echo '######################number of vm's to be created#####################'
+echo '######################number of vms to be created#####################'
 sed -i "s/count =.*/count = $num/g" main.tf
 
 echo '######################vm creation#####################'
@@ -11,7 +11,7 @@ terraform init
 terraform plan -out out.terraform
 terraform apply out.terraform
 
-echo '######################list of vm's created#####################'
+echo '######################list of vms created#####################'
 gcloud compute instances list | awk '{print $5}' | sed 1d | sed 's/34.73.216.180//g' | sudo tee ip_list
 cat ip_list
 
